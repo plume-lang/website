@@ -1,0 +1,7 @@
+fn welcome(name: str): unit {
+  println("Hello, " + name + "!")
+
+  return unit
+}
+
+welcome("world")

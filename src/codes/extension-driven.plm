@@ -1,0 +1,10 @@
+interface show<A> {
+  fn show(x: A): str
+}
+
+extend show<str> {
+  fn show(x) => "\"" + x + "\""
+}
+
+fn log<A extends show>(x: A) =>
+  println(x.show())

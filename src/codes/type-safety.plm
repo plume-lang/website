@@ -1,0 +1,7 @@
+list = [1, 2, 3, 4]
+
+// Will print Some(1)
+println(list[0])
+
+// Will print None
+println(list[98])

@@ -1,0 +1,8 @@
+postfix 5 !
+
+fn (!) (n: int) => switch n {
+  case 0 => 1
+  case ? => n * (n - 1)!
+}
+
+@println(5!) 

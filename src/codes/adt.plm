@@ -1,0 +1,8 @@
+type LinkedList<A> {
+  Empty,
+  Cons(A, LinkedList<A>)
+}
+
+xs = Cons(1, Cons(2, Cons(3, Empty)))
+// Slightly equivalent to:
+// xs = [1, 2, 3]
