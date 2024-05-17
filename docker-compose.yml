@@ -1,5 +1,5 @@
 services:
-  frontend:
+  root:
     container_name: root-website
     build:
       context: .
