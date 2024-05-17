@@ -4,7 +4,7 @@ import path from "path";
 import { LogLevel, log, customLog } from "#library/logger.ts";
 
 const server = serve({
-  port: process.env.SERVER_PORT || 3002,
+  port: process.env.SERVER_PORT || 3000,
   hostname: process.env.SERVER_HOST || 'localhost',
   async fetch(request) {
     const { method } = request;
