@@ -1,0 +1,342 @@
+---
+import CodeBlock from "../components/CodeBlock.astro";
+import Layout from "../layouts/Layout.astro";
+import { Icon } from "astro-icon/components";
+import fs from 'fs/promises';
+
+const files = ['extensions.plm', 'hello-world.plm', 'factorial.plm'];
+
+const contents = await Promise.all(files.map(async (file) => {
+  const content = await fs.readFile(`./src/codes/${file}`, 'utf-8');
+  return { file, content };
+}));
+
+// Get the content of a random file
+const code = 
+  contents[Math.floor(Math.random() * contents.length)]?.content
+    ?? 'println("Hello, World!")';
+
+const typeSafetyCode = await fs.readFile('./src/codes/type-safety.plm', 'utf-8');
+const extensionDrivenCode = await fs.readFile('./src/codes/extension-driven.plm', 'utf-8');
+const adtCode = await fs.readFile('./src/codes/adt.plm', 'utf-8');
+---
+
+<Layout title="Plume">
+  <script is:inline>
+    function createDownload(os, version) {
+      switch (os) {
+        case 'windows':
+          return `https://github.com/plume-lang/plume/releases/download/${version}/plume-windows-latest.zip`;
+        case 'linux':
+          return `https://github.com/plume-lang/plume/releases/download/${version}/plume-ubuntu-latest.zip`
+        case 'mac':
+          return `https://github.com/plume-lang/plume/releases/download/${version}/plume-macos-latest.zip`
+        default: return undefined;
+      }
+    }
+    
+    window.addEventListener('DOMContentLoaded', function() {
+      const link = document.getElementById('download-button');
+
+      const os = window.operatingSystem;
+      const version = '0.6.6';
+
+      if (os) {
+        const url = createDownload(os, version);
+        if (url) {
+          link.href = url;
+        } else {
+          link.style.display = 'none';
+        }
+      }
+    })
+  </script>
+
+  <header class="grid grid-cols-3 max-w-4xl mx-auto place-items-center py-32 gap-8 gap-x-16">
+    <!-- First header section (Plume introduction) -->
+    <div class="col-span-2">
+      <a href="https://github.com/plume-lang/plume/blob/main/CONTRIBUTING.md" class="bg-hot-pink/20 text-hot-pink-200/70 py-1 px-3 rounded-full inline-flex items-center mb-3 text-sm">
+        We need your help to make Plume better
+        <Icon name="tabler:chevron-right" class="w-4 h-4 ml-1" />
+      </a>
+      <h1 class="text-white text-3xl font-black">
+        The Plume Programming Language
+      </h1>
+      <p class="text-white/70 text-lg mt-4">
+        Plume is a programming language that aims to be as simple as existing languages like Python. It has a great learning curve, permitting users either to perform simple tasks or to accomplish large projects. Its syntax has been designed to be non-aggressive and free, without sacrificing performance.
+      </p>
+
+      <div class="flex mt-8 gap-x-4">
+        <a id="download-button" href="" class="inline-flex items-center bg-hot-pink/20 text-hot-pink-200 py-2 px-4 pr-6 rounded-full">
+          <Icon name="tabler:feather" class="w-6 h-6" />
+          <span class="ml-2 font-semibold">Install Plume 0.6.6  </span>
+        </a>
+        <a href="https://github.com/plume-lang" class="inline-flex items-center border border-white/10 py-2 px-4 pr-6 rounded-full text-white/80">
+          <Icon name="tabler:brand-github" class="w-6 h-6" />
+          <span class="ml-2 font-semibold">Visit the project</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Second header section (Plume code example) -->
+    <CodeBlock {code} position="start" />
+  </header>
+
+  <section class="py-16 pb-32 max-w-5xl mx-auto">
+    <div id="header" class="text-center">
+      <span class="text-white/40 uppercase font-bold">
+        The Plume Programming Language
+      </span>
+      <h2 class="text-white text-4xl font-black mt-2">
+        Its main features
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-3 mt-24 gap-8 gap-y-16">
+      <div>
+        <span class="bg-mustard/20 inline-block p-1.5 rounded-lg mb-2">
+          <Icon name="tabler:trending-up" class="w-8 h-8 text-mustard-200" />
+        </span>
+
+        <h5 class="text-white text-xl font-semibold">
+          Simplicity
+        </h5>
+        <p class="text-white/70 mt-2">
+          Because simplicity, elegance, and readability should be the norm in programming languages nowadays.
+        </p>
+      </div>
+
+      <div>
+        <span class="bg-mustard/20 inline-block p-1.5 rounded-lg mb-2">
+          <Icon name="tabler:bolt" class="w-8 h-8 text-mustard-200" />
+        </span>
+
+        <h5 class="text-white text-xl font-semibold">
+          Performance
+        </h5>
+        <p class="text-white/70 mt-2">
+          Interpreted languages shouldn't always mean bad performance: Plume aims at being fast and efficient.
+        </p>
+      </div>
+
+      <div>
+        <span class="bg-mustard/20 inline-block p-1.5 rounded-lg mb-2">
+          <Icon name="tabler:maximize" class="w-8 h-8 text-mustard-200" />
+        </span>
+
+        <h5 class="text-white text-xl font-semibold">
+          Flexibility
+        </h5>
+        <p class="text-white/70 mt-2">
+          Plume is designed to be flexible and to adapt to the user's needs, not the other way around.
+        </p>
+    </div>
+
+    <div>
+      <span class="bg-mustard/20 inline-block p-1.5 rounded-lg mb-2">
+        <Icon name="tabler:world" class="w-8 h-8 text-mustard-200" />
+      </span>
+
+      <h5 class="text-white text-xl font-semibold">
+        Interoperability
+      </h5>
+      <p class="text-white/70 mt-2">
+        Great interoperability enables great native softwares. Plume's dynamic library support is designed to be easy to use.
+      </p>
+    </div>
+
+    <div>
+      <span class="bg-mustard/20 inline-block p-1.5 rounded-lg mb-2">
+        <Icon name="tabler:puzzle" class="w-8 h-8 text-mustard-200" />
+      </span>
+
+      <h5 class="text-white text-xl font-semibold">
+        Extension driven development
+      </h5>
+
+      <p class="text-white/70 mt-2">
+        As Plume needs to be flexible, it is designed to be easily extended, by enabling function overloading with type extensions.
+      </p>
+    </div>
+
+    <div>
+      <span class="bg-mustard/20 inline-block p-1.5 rounded-lg mb-2">
+        <Icon name="tabler:shield-check" class="w-8 h-8 text-mustard-200" />
+      </span>
+
+      <h5 class="text-white text-xl font-semibold">
+        Type safety
+      </h5>
+
+      <p class="text-white/70 mt-2">
+        The language itself and its standard library are designed to be type safe, avoiding any runtime errors from them.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-16 max-w-5xl mx-auto ">
+    <div id="header" class="text-center">
+      <!-- <span class="text-white/40 uppercase font-bold">
+        The Plume Programming Language
+      </span> -->
+      <h2 class="text-white text-4xl font-black mt-2">
+        Why choose Plume?
+      </h2>
+    </div>
+
+    <p class="text-lg text-white/60 mt-8 max-w-xl mx-auto text-center mb-24">
+      Plume is a programming language that aims to be as simple as existing languages like Python. It has a great learning curve, permitting users either to perform simple tasks or to accomplish large projects. Its syntax has been designed to be non-aggressive and free, without sacrificing performance. 
+    </p>
+
+    <article class="grid grid-cols-3 mt-8 max-w-4xl mx-auto gap-x-8">
+      <div class="col-span-2">
+        <h3 class="text-white text-3xl font-bold place-items-center">
+          Type safety as a priority
+        </h3>
+        <p class="text-white/60 max-w-lg mt-4">
+          Because runtime errors shouldn't be a thing nowadays. Plume is designed to trap every possible error at compile time, permitting the user to focus on the logic of the program.<br /><br/>
+  
+          The standard library is also fully safe, no function will ever throw a runtime error. It has a little cost obviously, especially in terms of codebase-size, but it's worth it.
+        </p>
+      </div>
+
+      <CodeBlock code={typeSafetyCode} position="start" />
+    </article>
+
+    <article class="grid grid-cols-3 mt-24 max-w-4xl mx-auto gap-x-8">
+      <div class="col-span-2">
+        <h3 class="text-white text-3xl font-bold place-items-center">
+          Extension driven development
+        </h3>
+        <p class="text-white/60 max-w-lg mt-4">
+          Why should you use even more longer names for functions that are doing philosophically the same thing? Plume is designed to be easily extended, by enabling function overloading with type extensions.<br /><br/>
+
+          Type extensions come with three key features:<br/><br/>
+
+          <ul class="list-decimal text-white/60 ml-4 space-y-2">
+            <li>
+              Interfaces, which are a way to describe generic behavior for a type by defining a set of methods that the following type must implement.
+            </li>
+            <li>
+              Type extensions, which let the user implement these interfaces for existing types.
+            </li>
+            <li>
+              Generic extension, which enables the user to define functions with generic behavior, for instance <code>(+)</code> for any type that implements <code>numeric</code> interface.
+            </li>
+          </ul>
+        </p>
+      </div>
+
+      <CodeBlock code={extensionDrivenCode} position="start" />
+    </article>
+
+    <article class="grid grid-cols-3 mt-24 max-w-4xl mx-auto gap-x-8">
+      <div class="col-span-2">
+        <h3 class="text-white text-3xl font-bold place-items-center">
+          Custom user-defined types
+        </h3>
+        <p class="text-white/60 max-w-lg mt-4">
+          What's a language without the ability to express your own data-structures? Plume permits you to define your own types thanks to ADTs <i>(resp. Algebraic Data Types)</i>. <br/><br/>
+          
+          ADT is a complex name for a simple concept: an ADT express a type that can be one of several "functions" <i>(resp. ADT constructors)</i> where each function can have a variable number of types.<br/><br/>
+        </p>
+      </div>
+
+      <CodeBlock code={adtCode} position="start" />
+    </article> 
+  </section>
+
+  <section class="py-24 max-w-2xl mx-auto">
+    <div id="header" class="text-center mb-8">
+      <!-- <span class="text-white/40 uppercase font-bold">
+        The Plume Programming Language
+      </span> -->
+      <h2 class="text-white text-4xl font-black mt-2">
+        What are the next steps?
+      </h2>
+      <p class="text-white/60 max-w-lg mx-auto mt-8">
+        Plume is in its early stages, and we need your help to make it better. If you want to contribute, please check out our <a href="https://github.com/plume-lang/plume/blob/main/CONTRIBUTING.md" class="text-hot-pink-200">contributing guidelines</a>. We plan to implement many cool features, such as:
+      </p>
+    </div>
+
+    <article class="roadmap-grid mb-8">
+      <div class="col-span-1 inline-flex items-center">
+        <span class="text-hot-pink-200 bg-hot-pink/20 p-1.5 rounded-full inline-block">
+          <Icon name="tabler:package" class="w-6 h-6" />
+        </span>
+      </div>
+      <h5 class="inline-flex items-center self-center">
+        <span class="text-white text-xl font-semibold">
+          A project manager
+        </span>
+      </h5>
+      <span></span>
+      <p class="text-lg text-white/60">
+        The Plume Project Manager, formally called <code>ppm</code>, is a tool that will help you manage your Plume projects. It will be able to create new projects, build them, and run them. And also providing a way to manage dependencies, and even native libraries.
+      </p>
+    </article>
+
+    <article class="roadmap-grid mb-8">
+      <div class="col-span-1 inline-flex items-center">
+        <span class="text-hot-pink-200 bg-hot-pink/20 p-1.5 rounded-full inline-block">
+          <Icon name="tabler:repeat" class="w-6 h-6" />
+        </span>
+      </div>
+      <h5 class="inline-flex items-center self-center">
+        <span class="text-white text-xl font-semibold">
+          A bootstrapped compiler
+        </span>
+      </h5>
+      <span></span>
+      <p class="text-lg text-white/60">
+        The Plume compiler is currently written in Haskell. This is a great languages for compilers but it is really heavy to install and heavy to build. So, we plan to rewrite the compiler in Plume itself, to make it easier to install, to build, and to maintain.
+      </p>
+    </article>
+
+    <article class="roadmap-grid mb-8">
+      <div class="col-span-1 inline-flex items-center">
+        <span class="text-hot-pink-200 bg-hot-pink/20 p-1.5 rounded-full inline-block">
+          <Icon name="tabler:user" class="w-6 h-6" />
+        </span>
+      </div>
+      <h5 class="inline-flex items-center self-center">
+        <span class="text-white text-xl font-semibold">
+          Used-defined compiler extensions
+        </span>
+      </h5>
+      <span></span>
+      <p class="text-lg text-white/60">
+        As Plume is designed to be easily extended, we plan to enable the user to define its own compiler extensions. Like actual user-defined types, these extensions will be defined in the language itself, and will be compiled by the bootstrapped compiler. This should enable the user to define its own syntax, extend the typechecker, and even the code generator.
+      </p>
+    </article>
+
+    <article class="roadmap-grid mb-8">
+      <div class="col-span-1 inline-flex items-center">
+        <span class="text-hot-pink-200 bg-hot-pink/20 p-1.5 rounded-full inline-block">
+          <Icon name="tabler:info-circle" class="w-6 h-6" />
+        </span>
+      </div>
+      <h5 class="inline-flex items-center self-center">
+        <span class="text-white text-xl font-semibold">
+          Complete standard library
+        </span>
+      </h5>
+      <span></span>
+      <p class="text-lg text-white/60">
+        Current standard library is quite minimal, and we plan to extend it with more functions, more types, and more modules. We also plan to add more documentation to it, to make it easier to use. This could be combined with the project manager to provide a way to install new standard modules.
+      </p>
+    </article>
+
+    <p class="text-white max-w-lg text-center mx-auto mt-16">
+      And even more features in the future! If you want to know more about the project, please check out our <a href="https://github.com/plume-lang/plume/milestone/1" class="text-hot-pink-300">milestones</a>.
+    </p>
+  </section>
+</Layout>
+
+<style>
+.roadmap-grid {
+  display: grid;
+  grid-template-columns: 2rem 1fr;
+  gap: 0.5rem 1rem;
+}
+</style>

@@ -1,0 +1,49 @@
+---
+interface Props {
+	title: string;
+}
+
+import '@fontsource-variable/noto-sans';
+import '@fontsource-variable/fira-code';
+
+const { title } = Astro.props;
+---
+
+<html lang="en" class="h-full bg-zinc-900">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+	</head>
+
+  <script is:inline>
+    const userAgents = navigator.userAgent;
+
+    const os = userAgents.match(/(Windows|Mac|Linux)/)?.[0] || 'Unknown';
+    
+    window.operatingSystem = os.toLowerCase();
+  </script>
+
+	<body class="h-full">
+    <nav class="p-4 pt-8 sticky max-w-6xl mx-auto flex items-center">
+      <div class="flex-initial inline-flex items-center">
+        <img class="h-12 w-12 rounded-xl" src="/favicon.svg" alt="">
+        <a href="" class="text-white text-xl font-semibold leading-6 ml-4">
+          The Plume <br/>Programming Language
+        </a>
+      </div>
+
+      <ul class="flex-auto flex items-center justify-end gap-x-8">
+        <li class="text-white/80 hover:text-white">
+          <a href="https://github.com/plume-lang/plume/wiki">Documentation</a>
+        </li>
+        <li class="text-white/80 hover:text-white">
+          <a href="https://playground.plume-lang.org">Playground</a>
+        </li>
+      </ul>
+    </nav>
+		<slot />
+	</body>
+</html>
