@@ -1,0 +1,44 @@
+---
+interface Props {
+  code?: string;
+  position?: 'start' | 'end';
+}
+
+import plumeTextmate from '#src/plume.json' assert { type: "json" };
+import * as S from 'shiki/types.d.mts';
+import resolveTw from "tailwindcss/resolveConfig";
+import config from '#root/tailwind.config.mjs';
+import { Code } from 'astro:components';
+
+import Shiki from 'shiki/themes/github-dark-default.mjs';
+
+const tw = resolveTw(config).theme;
+
+// Using ts-ignore trick because of miscompatibility between Shiki and Plume grammar
+// @ts-ignore
+const lang: S.LanguageRegistration = plumeTextmate;
+
+const theme: S.ThemeRegistration = {
+  ...Shiki,
+  bg: tw.colors.zinc[900],
+  fg: tw.colors.zinc[100],
+}
+
+const { code, position }: Props = Astro.props;
+
+let content: string;
+
+if (code) { content = code; }
+else { content =  await Astro.slots.render('default'); }
+
+const positionCss = position === 'start' 
+  ? 'justify-self-start'
+  : position === 'end'
+    ? 'justify-self-end'
+    : 'justify-self-center'; 
+---
+
+<div class=`max-w-md self-center ${positionCss}`>
+  <Code {lang} {theme} code={content} />
+</div>
+
