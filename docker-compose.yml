@@ -1,0 +1,13 @@
+services:
+  frontend:
+    container_name: root-website
+    build:
+      context: .
+      dockerfile: Dockerfile
+    networks:
+      - proxy-net
+
+networks:
+  proxy-net:
+    name: proxy-network
+    external: true
