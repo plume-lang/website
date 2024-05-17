@@ -6,6 +6,7 @@
       "#components/*": ["./src/components/*"],
       "#layouts/*": ["./src/layouts/*"],      
       "#src/*": ["./src/*"],
+      "#library/*": ["./library/*"],
     }
   },
   "extends": "astro/tsconfigs/strictest",
