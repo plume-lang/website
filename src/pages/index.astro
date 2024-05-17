@@ -4,17 +4,7 @@ import Layout from "../layouts/Layout.astro";
 import { Icon } from "astro-icon/components";
 import fs from 'fs/promises';
 
-const files = ['extensions.plm', 'hello-world.plm', 'factorial.plm'];
-
-const contents = await Promise.all(files.map(async (file) => {
-  const content = await fs.readFile(`./src/codes/${file}`, 'utf-8');
-  return { file, content };
-}));
-
-// Get the content of a random file
-const code = 
-  contents[Math.floor(Math.random() * contents.length)]?.content
-    ?? 'println("Hello, World!")';
+const code = await fs.readFile('./src/codes/hello-world.plm', 'utf-8');
 
 const typeSafetyCode = await fs.readFile('./src/codes/type-safety.plm', 'utf-8');
 const extensionDrivenCode = await fs.readFile('./src/codes/extension-driven.plm', 'utf-8');
