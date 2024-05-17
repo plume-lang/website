@@ -27,10 +27,10 @@ const { title } = Astro.props;
   </script>
 
 	<body class="h-full">
-    <nav class="p-4 pt-8 sticky max-w-6xl mx-auto flex items-center">
-      <div class="flex-initial inline-flex items-center">
+    <nav class="p-4 pt-8 sticky max-w-6xl mx-auto max-md:flex-col flex items-center">
+      <div class="flex-initial inline-flex items-center max-md:flex-col">
         <img class="h-12 w-12 rounded-xl" src="/favicon.svg" alt="">
-        <a href="" class="text-white text-xl font-semibold leading-6 ml-4">
+        <a href="/" class="text-white text-xl font-semibold leading-6 md:ml-4 max-md:text-center max-md:my-4">
           The Plume <br/>Programming Language
         </a>
       </div>

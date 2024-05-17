@@ -42,9 +42,9 @@ const adtCode = await fs.readFile('./src/codes/adt.plm', 'utf-8');
     })
   </script>
 
-  <header class="grid grid-cols-3 max-w-4xl mx-auto place-items-center py-32 gap-8 gap-x-16">
+  <header class="grid lg:grid-cols-3 max-w-4xl mx-auto place-items-center py-32 gap-16 px-8">
     <!-- First header section (Plume introduction) -->
-    <div class="col-span-2">
+    <div class="lg:col-span-2">
       <a href="https://github.com/plume-lang/plume/blob/main/CONTRIBUTING.md" class="bg-hot-pink/20 text-hot-pink-200/70 py-1 px-3 rounded-full inline-flex items-center mb-3 text-sm">
         We need your help to make Plume better
         <Icon name="tabler:chevron-right" class="w-4 h-4 ml-1" />
@@ -56,7 +56,7 @@ const adtCode = await fs.readFile('./src/codes/adt.plm', 'utf-8');
         Plume is a programming language that aims to be as simple as existing languages like Python. It has a great learning curve, permitting users either to perform simple tasks or to accomplish large projects. Its syntax has been designed to be non-aggressive and free, without sacrificing performance.
       </p>
 
-      <div class="flex mt-8 gap-x-4">
+      <div class="flex max-md:flex-col mt-8 gap-4">
         <a id="download-button" href="" class="inline-flex items-center bg-hot-pink/20 text-hot-pink-200 py-2 px-4 pr-6 rounded-full">
           <Icon name="tabler:feather" class="w-6 h-6" />
           <span class="ml-2 font-semibold">Install Plume 0.6.6  </span>
@@ -72,7 +72,7 @@ const adtCode = await fs.readFile('./src/codes/adt.plm', 'utf-8');
     <CodeBlock {code} position="start" />
   </header>
 
-  <section class="py-16 pb-32 max-w-5xl mx-auto">
+  <section class="py-16 pb-32 max-w-5xl mx-auto px-8">
     <div id="header" class="text-center">
       <span class="text-white/40 uppercase font-bold">
         The Plume Programming Language
@@ -82,7 +82,7 @@ const adtCode = await fs.readFile('./src/codes/adt.plm', 'utf-8');
       </h2>
     </div>
 
-    <div class="grid grid-cols-3 mt-24 gap-8 gap-y-16">
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 mt-24 gap-8 gap-y-16">
       <div>
         <span class="bg-mustard/20 inline-block p-1.5 rounded-lg mb-2">
           <Icon name="tabler:trending-up" class="w-8 h-8 text-mustard-200" />
@@ -164,7 +164,7 @@ const adtCode = await fs.readFile('./src/codes/adt.plm', 'utf-8');
     </div>
   </section>
 
-  <section class="py-16 max-w-5xl mx-auto ">
+  <section class="py-16 max-w-5xl mx-auto px-8">
     <div id="header" class="text-center">
       <!-- <span class="text-white/40 uppercase font-bold">
         The Plume Programming Language
@@ -178,12 +178,12 @@ const adtCode = await fs.readFile('./src/codes/adt.plm', 'utf-8');
       Plume is a programming language that aims to be as simple as existing languages like Python. It has a great learning curve, permitting users either to perform simple tasks or to accomplish large projects. Its syntax has been designed to be non-aggressive and free, without sacrificing performance. 
     </p>
 
-    <article class="grid grid-cols-3 mt-8 max-w-4xl mx-auto gap-x-8">
-      <div class="col-span-2">
-        <h3 class="text-white text-3xl font-bold place-items-center">
+    <article class="grid xl:grid-cols-3 mt-8 max-w-4xl mx-auto gap-8">
+      <div class="xl:col-span-2">
+        <h3 class="text-white text-3xl font-bold place-items-center max-xl:text-center">
           Type safety as a priority
         </h3>
-        <p class="text-white/60 max-w-lg mt-4">
+        <p class="text-white/60 max-w-lg mt-4 max-xl:mx-auto max-xl:text-center">
           Because runtime errors shouldn't be a thing nowadays. Plume is designed to trap every possible error at compile time, permitting the user to focus on the logic of the program.<br /><br/>
   
           The standard library is also fully safe, no function will ever throw a runtime error. It has a little cost obviously, especially in terms of codebase-size, but it's worth it.
@@ -193,17 +193,17 @@ const adtCode = await fs.readFile('./src/codes/adt.plm', 'utf-8');
       <CodeBlock code={typeSafetyCode} position="start" />
     </article>
 
-    <article class="grid grid-cols-3 mt-24 max-w-4xl mx-auto gap-x-8">
-      <div class="col-span-2">
-        <h3 class="text-white text-3xl font-bold place-items-center">
+    <article class="grid xl:grid-cols-3 mt-24 max-w-4xl mx-auto gap-8">
+      <div class="xl:col-span-2">
+        <h3 class="text-white text-3xl font-bold place-items-center max-xl:text-center">
           Extension driven development
         </h3>
-        <p class="text-white/60 max-w-lg mt-4">
+        <p class="text-white/60 max-w-lg mt-4 max-xl:text-center max-xl:mx-auto">
           Why should you use even more longer names for functions that are doing philosophically the same thing? Plume is designed to be easily extended, by enabling function overloading with type extensions.<br /><br/>
 
           Type extensions come with three key features:<br/><br/>
 
-          <ul class="list-decimal text-white/60 ml-4 space-y-2">
+          <ul class="list-decimal text-white/60 ml-4 space-y-2 max-xl:max-w-lg max-xl:mx-auto">
             <li>
               Interfaces, which are a way to describe generic behavior for a type by defining a set of methods that the following type must implement.
             </li>
@@ -220,12 +220,12 @@ const adtCode = await fs.readFile('./src/codes/adt.plm', 'utf-8');
       <CodeBlock code={extensionDrivenCode} position="start" />
     </article>
 
-    <article class="grid grid-cols-3 mt-24 max-w-4xl mx-auto gap-x-8">
-      <div class="col-span-2">
-        <h3 class="text-white text-3xl font-bold place-items-center">
+    <article class="grid xl:grid-cols-3 mt-24 max-w-4xl mx-auto gap-8">
+      <div class="xl:col-span-2">
+        <h3 class="text-white text-3xl font-bold place-items-center max-xl:text-center">
           Custom user-defined types
         </h3>
-        <p class="text-white/60 max-w-lg mt-4">
+        <p class="text-white/60 max-w-lg mt-4 max-xl:text-center max-xl:mx-auto">
           What's a language without the ability to express your own data-structures? Plume permits you to define your own types thanks to ADTs <i>(resp. Algebraic Data Types)</i>. <br/><br/>
           
           ADT is a complex name for a simple concept: an ADT express a type that can be one of several "functions" <i>(resp. ADT constructors)</i> where each function can have a variable number of types.<br/><br/>
@@ -236,7 +236,7 @@ const adtCode = await fs.readFile('./src/codes/adt.plm', 'utf-8');
     </article> 
   </section>
 
-  <section class="py-24 max-w-2xl mx-auto">
+  <section class="py-24 max-w-2xl mx-auto px-8">
     <div id="header" class="text-center mb-8">
       <!-- <span class="text-white/40 uppercase font-bold">
         The Plume Programming Language
@@ -249,13 +249,13 @@ const adtCode = await fs.readFile('./src/codes/adt.plm', 'utf-8');
       </p>
     </div>
 
-    <article class="roadmap-grid mb-8">
+    <article class="roadmap-grid max-md:grid max-md:gap-2 mb-8">
       <div class="col-span-1 inline-flex items-center">
         <span class="text-hot-pink-200 bg-hot-pink/20 p-1.5 rounded-full inline-block">
-          <Icon name="tabler:package" class="w-6 h-6" />
+          <Icon name="tabler:package" class="w-6 h-6 max-md:w-8 max-md:h-8" />
         </span>
       </div>
-      <h5 class="inline-flex items-center self-center">
+      <h5 class="inline-flex items-center">
         <span class="text-white text-xl font-semibold">
           A project manager
         </span>
@@ -266,10 +266,10 @@ const adtCode = await fs.readFile('./src/codes/adt.plm', 'utf-8');
       </p>
     </article>
 
-    <article class="roadmap-grid mb-8">
+    <article class="roadmap-grid max-md:grid max-md:gap-2 mb-8">
       <div class="col-span-1 inline-flex items-center">
         <span class="text-hot-pink-200 bg-hot-pink/20 p-1.5 rounded-full inline-block">
-          <Icon name="tabler:repeat" class="w-6 h-6" />
+          <Icon name="tabler:repeat" class="w-6 h-6 max-md:w-8 max-md:h-8" />
         </span>
       </div>
       <h5 class="inline-flex items-center self-center">
@@ -283,10 +283,10 @@ const adtCode = await fs.readFile('./src/codes/adt.plm', 'utf-8');
       </p>
     </article>
 
-    <article class="roadmap-grid mb-8">
+    <article class="roadmap-grid max-md:grid max-md:gap-2 mb-8">
       <div class="col-span-1 inline-flex items-center">
         <span class="text-hot-pink-200 bg-hot-pink/20 p-1.5 rounded-full inline-block">
-          <Icon name="tabler:user" class="w-6 h-6" />
+          <Icon name="tabler:user" class="w-6 h-6 max-md:w-8 max-md:h-8" />
         </span>
       </div>
       <h5 class="inline-flex items-center self-center">
@@ -300,10 +300,10 @@ const adtCode = await fs.readFile('./src/codes/adt.plm', 'utf-8');
       </p>
     </article>
 
-    <article class="roadmap-grid mb-8">
+    <article class="roadmap-grid max-md:grid max-md:gap-2 mb-8">
       <div class="col-span-1 inline-flex items-center">
         <span class="text-hot-pink-200 bg-hot-pink/20 p-1.5 rounded-full inline-block">
-          <Icon name="tabler:info-circle" class="w-6 h-6" />
+          <Icon name="tabler:info-circle" class="w-6 h-6 max-md:w-8 max-md:h-8" />
         </span>
       </div>
       <h5 class="inline-flex items-center self-center">
@@ -324,9 +324,12 @@ const adtCode = await fs.readFile('./src/codes/adt.plm', 'utf-8');
 </Layout>
 
 <style>
-.roadmap-grid {
-  display: grid;
-  grid-template-columns: 2rem 1fr;
-  gap: 0.5rem 1rem;
+@media screen and (min-width: 768px) {
+  .roadmap-grid {
+    display: grid;
+    grid-template-columns: 2rem 1fr;
+    gap: 0.5rem 1rem;
+  }
+  
 }
 </style>
