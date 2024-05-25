@@ -4,7 +4,9 @@ interface Props {
   position?: 'start' | 'end';
 }
 
-import plumeTextmate from '#src/plume.json' assert { type: "json" };
+const textmate = await fetch('https://raw.githubusercontent.com/plume-lang/vscode-plume/main/syntaxes/plume.tmLanguage.json');
+const plumeTextmate = await textmate.json();
+
 import * as S from 'shiki/types.d.mts';
 import resolveTw from "tailwindcss/resolveConfig";
 import config from '#root/tailwind.config.mjs';
