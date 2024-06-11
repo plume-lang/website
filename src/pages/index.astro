@@ -29,7 +29,7 @@ const adtCode = await fs.readFile('./src/codes/adt.plm', 'utf-8');
       const link = document.getElementById('download-button');
 
       const os = window.operatingSystem;
-      const version = '0.6.6';
+      const version = '0.8.0';
 
       if (os) {
         const url = createDownload(os, version);
@@ -42,9 +42,9 @@ const adtCode = await fs.readFile('./src/codes/adt.plm', 'utf-8');
     })
   </script>
 
-  <header class="grid lg:grid-cols-3 max-w-4xl mx-auto place-items-center py-32 gap-16 px-8">
+  <header class="flex max-w-5xl mx-auto place-items-center py-32 gap-16 px-8">
     <!-- First header section (Plume introduction) -->
-    <div class="lg:col-span-2">
+    <div class="flex-auto">
       <a href="https://github.com/plume-lang/plume/blob/main/CONTRIBUTING.md" class="bg-hot-pink/20 text-hot-pink-200/70 py-1 px-3 rounded-full inline-flex items-center mb-3 text-sm">
         We need your help to make Plume better
         <Icon name="tabler:chevron-right" class="w-4 h-4 ml-1" />
@@ -59,7 +59,7 @@ const adtCode = await fs.readFile('./src/codes/adt.plm', 'utf-8');
       <div class="flex max-md:flex-col mt-8 gap-4">
         <a id="download-button" href="" class="inline-flex items-center bg-hot-pink/20 text-hot-pink-200 py-2 px-4 pr-6 rounded-full">
           <Icon name="tabler:feather" class="w-6 h-6" />
-          <span class="ml-2 font-semibold">Install Plume 0.6.6  </span>
+          <span class="ml-2 font-semibold">Install Plume 0.8.0  </span>
         </a>
         <a href="https://github.com/plume-lang" class="inline-flex items-center border border-white/10 py-2 px-4 pr-6 rounded-full text-white/80">
           <Icon name="tabler:brand-github" class="w-6 h-6" />
