@@ -1,7 +1,10 @@
-fn welcome(name: str): unit {
-  println("Hello, " + name + "!")
+require "std:io/http"
 
-  return unit
-}
+port = 8000
 
-welcome("world")
+create_server(
+  port, Some("Server running on port $port"), 
+  fn(res, body: str) {
+    res.respond("Hello, world!", 200)
+  }
+)
